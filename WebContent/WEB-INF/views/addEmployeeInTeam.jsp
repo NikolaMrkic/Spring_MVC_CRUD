@@ -52,32 +52,29 @@
 	<section id="showcase">
 		<div class="unosT">
 			<form:form
-				action="/SpringMVC_CRUD_ProjectMenagment_System/addEmpInTeam/id"
+				action="/Spring_MVC_CRUD__/addEmployeeInTeam"
 				method="POST" modelAttribute="team">
 				<img src="<css:url value="/recources/img/zaposleni.png"/>"
 					class="zaposleni">
-				<div class="select-style">
-					<%-- <select name="cbZaposleni">
-						<option>Employee name</option>
-						<c:forEach var="result" items="${al}">
-							<option>${result.name}</option>
-						</c:forEach>
-					</select> --%>
-					
-					
-					
-					
-					<c:forEach var="result" items="${al}">
+				<div class="select-style">			
+				
+				<form:select path="id">
+						<form:options items="${al}" itemValue="id" itemLabel="name" />					
+					</form:select>
+					<form:input path="teamName" />
+					<button class="btnUnesiZaposlenog">Submit</button>
+
+
+					<%-- <c:forEach var="result" items="${al}">
 						<select name="cbZaposleni">
 							<option>${result.name}</option>
 						</select>
 						<form:hidden path="id" value="${result.id}" />
-					</c:forEach>
-
+					</c:forEach> --%>
+					
 				</div>
-				<form:input path="teamName"/>
-			<!-- <input type="text" name="nazivTima" placeholder="Team name"> -->
-				<button class="btnUnesiZaposlenog">Submit</button>
+		
+		
 			</form:form>
 		</div>
 	</section>
@@ -86,16 +83,17 @@
 			<tr>
 				<th>Name</th>
 				<th>Surname</th>
+				<th>Position</th>
 				<th>Team name</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
-			<c:forEach var="y" items="${x.rows}">
+			<c:forEach var="y" items="${al}">
 				<tr>
-					<td>${y.Ime}</td>
-					<td>${y.Surname}</td>
-					<td>${y.Position}</td>
-					<td>${y.TeamName}</td>
+					<td>${y.name}</td>
+					<td>${y.surname}</td>
+					<td>${y.position}</td>
+					<td>${y.team}</td>
 					<td><a href="EditServletZaposlenog?id=${y.id}">Promeni</a></td>
 					<td><a href="DeleteFormaZaposlenog?id=${y.id}">Obrisi</a></td>
 				</tr>

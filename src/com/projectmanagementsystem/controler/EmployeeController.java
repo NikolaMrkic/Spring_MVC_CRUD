@@ -21,7 +21,7 @@ import com.projectmanagementsystem.model.Team;
 public class EmployeeController {
 	@Autowired
 	private EmployeeDaoImp dao;
-	
+
 	@Autowired
 	private TeamDao teamDao;
 
@@ -71,22 +71,26 @@ public class EmployeeController {
 		return new ModelAndView("redirect:/viewemp");
 
 	}
-/*//	@RequestMapping(value ="/addEmpInTeam/{id}"){
-//		public ModelAndView addEmployeeInTeam()
-//	}
-*/
 	
-	@RequestMapping(value = "/addEmployeeInTeam/{id}")
-	public String t2(@PathVariable ("id") int id,@ModelAttribute("team") Team team) {
-		teamDao.saveTeam(id,team);
+	@RequestMapping(value="/addEmployeeInTeam", method=RequestMethod.GET)
+	  public String insertEmployeeInTeam(Model model) {
+		  model.addAttribute("team", new Team());
 		return "addEmployeeInTeam";
-		
+		  
+	  }
+
+	@RequestMapping(value="/addEmployeeInTeam", method=RequestMethod.POST)
+	public String insertEmployeeInTeam(@ModelAttribute("team") Team team, Model model) {
+		dao.insertEmployeInTeam(team);
+		model.addAttribute("team",team);
+		return "addEmployeeInTeam";
+
 	}
-	
+
 	@ModelAttribute
 	public void getAll(Model model) {
-		
+
 		List<Employee> alEmp = dao.getEmployees();
 		model.addAttribute("al", alEmp);
 	}
-	}
+}

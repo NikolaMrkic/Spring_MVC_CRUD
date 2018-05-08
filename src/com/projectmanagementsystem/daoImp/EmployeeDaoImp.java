@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.projectmanagementsystem.dao.EmployeeDao;
 import com.projectmanagementsystem.model.Employee;
+import com.projectmanagementsystem.model.Team;
 
 @Repository
 public class EmployeeDaoImp implements EmployeeDao {
@@ -59,6 +60,12 @@ public class EmployeeDaoImp implements EmployeeDao {
 	public int delete(int id) {
 		String sql = "delete from employee where id=" + id;
 		return template.update(sql);
+	}
+
+	@Override
+	public void insertEmployeInTeam(Team team) {
+		String sql = "INSERT INTO team(team_name, id) VALUES (?,?)";
+		template.update(sql, new Object[] {team.getTeamName(),team.getId()});
 	}
 
 	
