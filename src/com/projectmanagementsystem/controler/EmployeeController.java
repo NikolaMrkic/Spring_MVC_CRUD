@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.projectmanagementsystem.daoImp.EmployeeDaoImp;
 import com.projectmanagementsystem.daoImp.TeamDao;
 import com.projectmanagementsystem.model.Employee;
+import com.projectmanagementsystem.model.InnerEmpTeam;
 import com.projectmanagementsystem.model.Team;
 
 @Controller
@@ -53,22 +54,22 @@ public class EmployeeController {
 		return new ModelAndView("viewemp", "list", list);
 	}
 
-	@RequestMapping(value = "/editEmployee/{id}")
+	@RequestMapping(value = "/editEmployeeForm/{id}")
 	public ModelAndView edit(@PathVariable int id) {
 		Employee emp = dao.getEmpById(id);
-		return new ModelAndView("empeditform", "command", emp);
+		return new ModelAndView("editEmployeeForm", "command", emp);
 	}
 
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
 	public ModelAndView editsave(@ModelAttribute("emp") Employee emp) {
 		dao.update(emp);
-		return new ModelAndView("redirect:/viewemp");
+		return new ModelAndView("redirect:/insertEmployee");
 	}
 
 	@RequestMapping(value = "/deleteEmployee/{id}")
 	public ModelAndView deleteEmp(@PathVariable int id) {
 		dao.delete(id);
-		return new ModelAndView("redirect:/viewemp");
+		return new ModelAndView("redirect:/insertEmployee");
 
 	}
 	
@@ -92,5 +93,11 @@ public class EmployeeController {
 
 		List<Employee> alEmp = dao.getEmployees();
 		model.addAttribute("al", alEmp);
+	}
+	
+	@ModelAttribute
+	public void innerEmpTeam(Model model) {
+		List<InnerEmpTeam> alInnEmpTeam = dao.getInnerEmpTeam();
+		model.addAttribute("innerEmpTea", alInnEmpTeam);
 	}
 }

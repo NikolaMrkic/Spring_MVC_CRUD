@@ -1,26 +1,12 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="css" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<%-- <sql:setDataSource driver="com.mysql.jdbc.Driver" var="con"
-	url="jdbc:mysql://localhost/Project_Menagment_System" user="root" password="" />
-<sql:query var="x" dataSource="${con}"> 
-    SELECT  z.name ,z.position ,t.team_name 
-    FROM employee AS z 
-    INNER JOIN team AS t 
-    ON
-    z.id = t.id_employee;
-</sql:query>
-<sql:query var="select" dataSource="${con}">
-    select * from employee
-</sql:query> --%>
+
 
 <!DOCTYPE html>
 <html>
@@ -51,30 +37,34 @@
 		style='position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: -1;'>
 	<section id="showcase">
 		<div class="unosT">
-			<form:form
-				action="/Spring_MVC_CRUD__/addEmployeeInTeam"
+			<form:form action="/Spring_MVC_CRUD__/addEmployeeInTeam"
 				method="POST" modelAttribute="team">
 				<img src="<css:url value="/recources/img/zaposleni.png"/>"
 					class="zaposleni">
-				<div class="select-style">			
-				
-				<form:select path="id">
-						<form:options items="${al}" itemValue="id" itemLabel="name" />					
+				<div class="select-style">
+
+					<form:select path="id">
+						<form:options items="${al}" itemValue="id" itemLabel="name" />
 					</form:select>
+					<%-- <spring:message code="testEntry" var="Team" />
+					  <form:input path="teamName" placeholder='${Team}'/>. --%>
 					<form:input path="teamName" />
 					<button class="btnUnesiZaposlenog">Submit</button>
 
-
+			 
+			
+			
+			
 					<%-- <c:forEach var="result" items="${al}">
 						<select name="cbZaposleni">
 							<option>${result.name}</option>
 						</select>
 						<form:hidden path="id" value="${result.id}" />
 					</c:forEach> --%>
-					
+
 				</div>
-		
-		
+
+
 			</form:form>
 		</div>
 	</section>
@@ -88,14 +78,14 @@
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
-			<c:forEach var="y" items="${al}">
+			<c:forEach var="y" items="${innerEmpTea}">
 				<tr>
 					<td>${y.name}</td>
 					<td>${y.surname}</td>
 					<td>${y.position}</td>
-					<td>${y.team}</td>
-					<td><a href="EditServletZaposlenog?id=${y.id}">Promeni</a></td>
-					<td><a href="DeleteFormaZaposlenog?id=${y.id}">Obrisi</a></td>
+					<td>${y.teamName}</td>
+					<%-- <td><a href="editEmployeeForm/${y.id}">Edit</a></td>
+					<td><a href="deleteemp/${y.id}">Delete</a></td> --%>
 				</tr>
 			</c:forEach>
 		</table>

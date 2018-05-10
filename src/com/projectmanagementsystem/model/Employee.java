@@ -11,7 +11,7 @@ public class Employee {
 	
 														
 
-	private int idCard;
+	private Integer idCard;
 	
 	@NotEmpty
 	@Size(max=20,min=6)
@@ -27,7 +27,7 @@ public class Employee {
 	@Size(max=20,min=6)
 	private String position;
 
-	public Employee(int id, int idCard, String name, String surname, String position) {
+	public Employee(int id, Integer idCard, String name, String surname, String position) {
 		super();
 		this.id = id;
 		this.idCard = idCard;
@@ -49,11 +49,11 @@ public class Employee {
 		this.id = id;
 	}
 
-	public int getIdCard() {
+	public Integer getIdCard() {
 		return idCard;
 	}
 
-	public void setIdCard(int idCard) {
+	public void setIdCard(Integer idCard) {
 		this.idCard = idCard;
 	}
 

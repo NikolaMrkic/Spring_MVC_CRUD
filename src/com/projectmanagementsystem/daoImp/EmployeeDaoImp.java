@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.projectmanagementsystem.dao.EmployeeDao;
 import com.projectmanagementsystem.model.Employee;
+import com.projectmanagementsystem.model.InnerEmpTeam;
 import com.projectmanagementsystem.model.Team;
 
 @Repository
@@ -51,7 +52,7 @@ public class EmployeeDaoImp implements EmployeeDao {
 		// String sql="update employeespring set name='"+emp.getName()+"',
 		// salary="+emp.getSalary()+",designation='"+emp.getDesignation()+"' where
 		// id="+emp.getId()+"";
-		String sql = "update employee set name='" + emp.getName() + "',surname='" + emp.getSurname() + "',idCart='"
+		String sql = "update employee set name='" + emp.getName() + "',surname='" + emp.getSurname() + "',idCard='"
 				+ emp.getIdCard() + "',position='" + emp.getPosition() + "' WHERE Id='" + emp.getId() + "'";
 		// MORA DA SE STAVE ' PRE KRAJA "
 		template.update(sql);
@@ -65,8 +66,25 @@ public class EmployeeDaoImp implements EmployeeDao {
 	@Override
 	public void insertEmployeInTeam(Team team) {
 		String sql = "INSERT INTO team(team_name, id) VALUES (?,?)";
-		template.update(sql, new Object[] {team.getTeamName(),team.getId()});
+		template.update(sql, new Object[] { team.getTeamName(), team.getId() });
 	}
 
-	
+	public List<InnerEmpTeam> getInnerEmpTeam() {
+
+		return template.query(
+				"SELECT e.name,e.surname,e.position,t.id_team,t.team_name FROM employee as e INNER JOIN team as t ON e.id = t.id",
+				new RowMapper<InnerEmpTeam>() {
+					public InnerEmpTeam mapRow(ResultSet rs, int row) throws SQLException {
+						InnerEmpTeam e = new InnerEmpTeam();
+
+						e.setName(rs.getString(1));
+						e.setPosition(rs.getString(2));
+						e.setSurname(rs.getString(3));
+						e.setIdTeam(rs.getInt(4));
+						e.setTeamName(rs.getString(5));
+						return e;
+					}
+				});
+
+	}
 }

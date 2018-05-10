@@ -22,7 +22,7 @@
 
 
 <h1>Edit Employee</h1>
-<form:form method="POST" action="/SpringMVC_CRUD_ProjectMenagment_System/editsave">
+<form:form method="POST" action="/Spring_MVC_CRUD__/editsave">
 	<table class="tabela">
 		<tr>
 			<td></td>

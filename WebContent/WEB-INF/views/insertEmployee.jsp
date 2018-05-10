@@ -56,6 +56,7 @@
 
 			<form:form method="post" action="/Spring_MVC_CRUD__/save"
 				modelAttribute="emp">
+				
 				<div class="input-filed">
 					<label class="active">Id Card</label>
 					<form:input type="text" id="name" path="idCard" value="" />
@@ -99,8 +100,8 @@
 					<td>${y.name}</td>
 					<td>${y.surname}</td>
 					<td>${y.position}</td>
-					<td><a href="editEmployee/${emp.id}">Edit</a></td>
-					<td><a href="deleteEmployee/${emp.id}">Delete</a></td>
+					<td><a href="editEmployeeForm/${y.id}">Edit</a></td>
+					<td><a href="deleteemp/${y.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>
