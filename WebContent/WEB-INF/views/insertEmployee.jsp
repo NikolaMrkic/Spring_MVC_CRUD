@@ -101,7 +101,7 @@
 					<td>${y.surname}</td>
 					<td>${y.position}</td>
 					<td><a href="editEmployeeForm/${y.id}">Edit</a></td>
-					<td><a href="deleteemp/${y.id}">Delete</a></td>
+					<td><a href="deleteEmployee/${y.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

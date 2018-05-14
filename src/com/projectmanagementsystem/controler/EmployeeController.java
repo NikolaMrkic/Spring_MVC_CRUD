@@ -30,6 +30,11 @@ public class EmployeeController {
 	public String p1(Model model) {
 		return "index";
 	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index(Model model) {
+		return "index";
+	}
 
 	@RequestMapping(value = "/insertEmployee")
 	public String m2(Model model) {
