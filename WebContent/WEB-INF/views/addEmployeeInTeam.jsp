@@ -1,13 +1,9 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="css" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +38,6 @@
 				<img src="<css:url value="/recources/img/zaposleni.png"/>"
 					class="zaposleni">
 				<div class="select-style">
-
 					<form:select path="id">
 						<form:options items="${al}" itemValue="id" itemLabel="name" />
 					</form:select>
@@ -50,21 +45,7 @@
 					  <form:input path="teamName" placeholder='${Team}'/>. --%>
 					<form:input path="teamName" />
 					<button class="btnUnesiZaposlenog">Submit</button>
-
-			 
-			
-			
-			
-					<%-- <c:forEach var="result" items="${al}">
-						<select name="cbZaposleni">
-							<option>${result.name}</option>
-						</select>
-						<form:hidden path="id" value="${result.id}" />
-					</c:forEach> --%>
-
 				</div>
-
-
 			</form:form>
 		</div>
 	</section>
